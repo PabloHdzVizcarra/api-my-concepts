@@ -8,5 +8,5 @@ export interface IConcepts extends Document {
 export interface DataRes {
   error: boolean
   message: string
-  data?: object[]
+  data?: IConcepts[]
 }

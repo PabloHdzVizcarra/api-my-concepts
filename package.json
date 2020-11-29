@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles --watch",
     "dev": "tsc --watch",
     "dev:server": "NODE_ENV=development nodemon dist/js/index.js",
     "start": "node dist/js/index.js",
@@ -35,6 +35,7 @@
     "@types/jest": "^26.0.15",
     "@types/mongoose": "^5.10.1",
     "@types/node": "^14.14.10",
+    "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
     "babel-jest": "^26.6.3",
@@ -45,6 +46,7 @@
     "jest": "^26.6.3",
     "nodemon": "^2.0.6",
     "prettier": "^2.2.1",
+    "supertest": "^6.0.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
     "typescript": "^4.1.2"

@@ -1,9 +1,9 @@
 import config from '../../config'
-import mongoose, { mongo, Schema, Model } from 'mongoose'
+import mongoose, { Model } from 'mongoose'
 import { DataRes, IConcepts } from '../../types'
 
 const uri: string = config.DB_URL
-const options: object = {
+const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }
