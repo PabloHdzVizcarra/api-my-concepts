@@ -5,7 +5,7 @@ import { DataRes, IConcepts } from '../../types'
 const uri: string = config.DB_URL
 const options: object = {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 }
 
 mongoose.connect(uri, options)
@@ -15,13 +15,15 @@ db.once('open', (): void => {
   console.log('success connect mongoDB')
 })
 
-export const getAllDataFromSchema = async(schema: Model<IConcepts>):Promise<DataRes> => {
+export const getAllDataFromSchema = async (
+  schema: Model<IConcepts>,
+): Promise<DataRes> => {
   try {
     const concepts: IConcepts[] = await schema.find()
     return {
       error: false,
       message: 'data succes',
-      data: concepts
+      data: concepts,
     }
   } catch (error) {
     return {

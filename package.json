@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "tsc --watch",
     "dev:server": "NODE_ENV=development nodemon dist/js/index.js",
     "start": "node dist/js/index.js",
@@ -27,17 +27,26 @@
     "mongoose": "^5.10.17"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
     "@types/cors": "^2.8.8",
     "@types/express": "^4.17.9",
+    "@types/jest": "^26.0.15",
     "@types/mongoose": "^5.10.1",
     "@types/node": "^14.14.10",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
+    "babel-jest": "^26.6.3",
     "concurrently": "^5.3.0",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.6",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.1.2"
   }
 }

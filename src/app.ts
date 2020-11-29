@@ -2,7 +2,10 @@ import express, { Express } from 'express'
 import cors from 'cors'
 import allRoutes from './routes'
 import './module/mongoose/mongoose.config'
-import { defaultController, errorController } from './controllers/others/other.controller'
+import {
+  defaultController,
+  errorController,
+} from './controllers/others/other.controller'
 
 const app: Express = express()
 

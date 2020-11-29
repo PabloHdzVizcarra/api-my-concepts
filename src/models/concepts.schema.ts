@@ -5,15 +5,15 @@ const conceptsSchema: Schema = new Schema(
   {
     title: {
       type: String,
-      required: true
+      required: true,
     },
 
     description: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
-export default model<IConcepts>("Concept", conceptsSchema)
+export default model<IConcepts>('Concept', conceptsSchema)
