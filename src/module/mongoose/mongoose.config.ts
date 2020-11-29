@@ -15,14 +15,14 @@ db.once('open', (): void => {
   console.log('success connect mongoDB')
 })
 
-export const getAllDataFromSchema = async (
+const getAllDataFromSchema = async (
   schema: Model<IConcepts>,
 ): Promise<DataRes> => {
   try {
     const concepts: IConcepts[] = await schema.find()
     return {
       error: false,
-      message: 'data succes',
+      message: 'get data success',
       data: concepts,
     }
   } catch (error) {
@@ -32,3 +32,5 @@ export const getAllDataFromSchema = async (
     }
   }
 }
+
+export { getAllDataFromSchema }

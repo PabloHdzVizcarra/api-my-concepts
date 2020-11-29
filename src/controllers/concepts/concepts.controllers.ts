@@ -8,7 +8,7 @@ const getAllConcepts = async (req: Request, res: Response): Promise<void> => {
     ConceptSchema,
   )
   if (error) {
-    res.status(401).send(message)
+    res.status(500).send(message)
   }
   res.status(200).json(data)
 }

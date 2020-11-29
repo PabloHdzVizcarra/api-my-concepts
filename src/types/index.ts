@@ -6,7 +6,7 @@ export interface IConcepts extends Document {
 }
 
 export interface DataRes {
-  error: boolean
+  error: true | false
   message: string
   data?: IConcepts[]
 }
