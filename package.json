@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc --watch",
-    "dev:server": "nodemon dist/js/index.js",
-    "start": "concurrently \"tsc -w\" \"nodemon dist/js/app.js\"",
+    "dev:server": "NODE_ENV=development nodemon dist/js/index.js",
+    "start": "node dist/js/index.js",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --quiet --fix"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/PabloHdzVizcarra/api-my-concepts#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.17"
   },

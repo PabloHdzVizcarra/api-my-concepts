@@ -1,7 +1,9 @@
 import app from './app'
-const PORT: number = 4000
+import config from './config'
 
-app.listen(PORT, () => {
-  console.log(`App listen in http://127.0.0.1:${PORT}`)
+console.log(config)
+
+app.listen(() => {
+  console.log(`App listen in http://${config.HOST}:${config.PORT}`)
 })
 
