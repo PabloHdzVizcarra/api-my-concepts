@@ -1,5 +1,6 @@
 import config from '../../config'
-import mongoose, { mongo } from 'mongoose'
+import mongoose, { mongo, Schema, Model } from 'mongoose'
+import { DataRes, IConcepts } from '../../types'
 
 const uri: string = config.DB_URL
 const options: object = {
@@ -13,3 +14,19 @@ db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', (): void => {
   console.log('success connect mongoDB')
 })
+
+export const getAllDataFromSchema = async(schema: Model<IConcepts>):Promise<DataRes> => {
+  try {
+    const concepts: IConcepts[] = await schema.find()
+    return {
+      error: false,
+      message: 'data succes',
+      data: concepts
+    }
+  } catch (error) {
+    return {
+      error: true,
+      message: error.message,
+    }
+  }
+}
