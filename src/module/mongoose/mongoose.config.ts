@@ -1,19 +1,15 @@
 import config from '../../config'
-import mongoose from 'mongoose'
+import mongoose, { mongo } from 'mongoose'
 
 const uri: string = config.DB_URL
 const options: object = {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }
-console.log(config.DB_URL)
 
-mongoose.set('useFindAndModify', false)
-mongoose
-  .connect(uri, options)
-  .then((): void => {
-    console.log('connected mongoDB')
-  })
-  .catch((error):never =>  {
-    throw error
-  })
+mongoose.connect(uri, options)
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
+db.once('open', (): void => {
+  console.log('success connect mongoDB')
+})
