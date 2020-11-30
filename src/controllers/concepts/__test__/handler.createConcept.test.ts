@@ -51,5 +51,6 @@ describe('Test in createConcept handler for end-point "api/v1/create-concept"', 
       description: expect.any(String),
       title: expect.any(String),
     })
+    mock.mockRestore()
   })
 })

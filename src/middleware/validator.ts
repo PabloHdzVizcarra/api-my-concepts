@@ -1,5 +1,6 @@
 import { body, ValidationChain, validationResult } from 'express-validator'
 import { NextFunction, Request, Response } from 'express'
+import { LogSendData } from '../module/log_debug/debug'
 
 const conceptValidationRules = (): ValidationChain[] => [
   body('title', 'Debes agregar un titulo al concepto')
@@ -26,6 +27,7 @@ const validationMiddleware = (
   const extractedErrors: string[] = []
   errors.array().map(err => extractedErrors.push(err.msg))
 
+  LogSendData('enviaste datos incorrectos')
   res.status(422).json({
     errors: extractedErrors,
   })
