@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import {
   createConcept,
+  deleteConcept,
   getAllConcepts,
 } from '../controllers/concepts/concepts.controllers'
 import {
@@ -24,5 +25,7 @@ router.post(
   validationMiddleware,
   createConcept,
 )
+
+router.delete('/api/v1/delete-concept/:name', deleteConcept)
 
 export default router
