@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --detectOpenHandles --watch",
     "dev": "tsc --watch",
-    "dev:server": "NODE_ENV=development nodemon dist/js/index.js",
+    "dev:server": "NODE_ENV=development && DEBUG=info* nodemon dist/js/index.js",
     "start": "node dist/js/index.js",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --quiet --fix"
   },
@@ -21,11 +21,14 @@
   },
   "homepage": "https://github.com/PabloHdzVizcarra/api-my-concepts#readme",
   "dependencies": {
+    "@types/debug": "^4.1.5",
     "cors": "^2.8.5",
+    "debug": "^4.3.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.7.0",
-    "mongoose": "^5.10.17"
+    "mongoose": "^5.10.17",
+    "supports-color": "^8.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

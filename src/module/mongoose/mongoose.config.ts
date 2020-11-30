@@ -1,6 +1,7 @@
 import config from '../../config'
 import mongoose, { Model } from 'mongoose'
 import { DataRes, IConcepts } from '../../types'
+import { LogInfo } from '../log_debug/debug'
 
 const uri: string = config.DB_URL
 const options = {
@@ -12,7 +13,7 @@ mongoose.connect(uri, options)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', (): void => {
-  console.log('success connect mongoDB')
+  LogInfo('success connect mongoDB')
 })
 
 const getAllDataFromSchema = async (
