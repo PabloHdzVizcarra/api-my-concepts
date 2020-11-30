@@ -1,5 +1,12 @@
 import { Router } from 'express'
-import { getAllConcepts } from '../controllers/concepts/concepts.controllers'
+import {
+  createConcept,
+  getAllConcepts,
+} from '../controllers/concepts/concepts.controllers'
+import {
+  conceptValidationRules,
+  validationMiddleware,
+} from '../middleware/validator'
 
 const router: Router = Router()
 
@@ -10,5 +17,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/api/v1/', getAllConcepts)
+router.post(
+  '/api/v1/create-concept',
+  conceptValidationRules(),
+  validationMiddleware,
+  createConcept,
+)
 
 export default router

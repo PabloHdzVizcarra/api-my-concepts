@@ -6,7 +6,7 @@ const conceptValidationRules = (): ValidationChain[] => [
     .isString()
     .not()
     .isEmpty(),
-  body('description', 'Debe contener uns description el concepto')
+  body('description', 'Debe contener una description el concepto')
     .isString()
     .not()
     .isEmpty(),
@@ -22,8 +22,9 @@ const validationMiddleware = (
     next()
   }
 
-  const extractedErrors: ErrorConstructor[] = []
+  const extractedErrors: string[] = []
   errors.array().map(err => extractedErrors.push(err.msg))
+
   res.status(422).json({
     errors: extractedErrors,
   })

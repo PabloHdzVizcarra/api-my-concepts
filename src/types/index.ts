@@ -10,3 +10,8 @@ export interface DataRes {
   message: string
   data?: IConcepts[]
 }
+
+export interface UIConcept {
+  title: string
+  description: string
+}

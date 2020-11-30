@@ -13,4 +13,9 @@ const getAllConcepts = async (req: Request, res: Response): Promise<void> => {
   res.status(200).json(data)
 }
 
-export { getAllConcepts }
+const createConcept = async (req: Request, res: Response): Promise<void> => {
+  console.log(req.body)
+  res.status(200).send('success')
+}
+
+export { getAllConcepts, createConcept }
