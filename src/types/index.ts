@@ -15,3 +15,9 @@ export interface UIConcept {
   title: string
   description: string
 }
+
+export interface IOneConcept {
+  error: boolean | false
+  message: string | null
+  data?: IConcepts
+}

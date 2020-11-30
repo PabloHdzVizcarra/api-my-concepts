@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --watch",
+    "test": "NODE_ENV=test jest --detectOpenHandles --watch",
     "dev": "tsc --watch",
-    "dev:server": "NODE_ENV=development && DEBUG=info* nodemon dist/js/index.js",
+    "dev:server": "NODE_ENV=development DEBUG=info* nodemon dist/js/index.js",
     "start": "node dist/js/index.js",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --quiet --fix"
   },

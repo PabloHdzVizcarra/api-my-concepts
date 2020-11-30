@@ -20,6 +20,7 @@ const validationMiddleware = (
   const errors = validationResult(req)
   if (errors.isEmpty()) {
     next()
+    return
   }
 
   const extractedErrors: string[] = []

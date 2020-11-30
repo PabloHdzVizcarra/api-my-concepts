@@ -1,7 +1,7 @@
 import config from '../../config'
 import mongoose, { Model } from 'mongoose'
-import { DataRes, IConcepts } from '../../types'
-import { LogInfo } from '../log_debug/debug'
+import { DataRes, IConcepts, IOneConcept, UIConcept } from '../../types'
+import { LogInfo, LogMongoDB } from '../log_debug/debug'
 
 const uri: string = config.DB_URL
 const options = {
@@ -21,6 +21,7 @@ const getAllDataFromSchema = async (
 ): Promise<DataRes> => {
   try {
     const concepts: IConcepts[] = await schema.find()
+    LogMongoDB('datos obtenidos de mongodb')
     return {
       error: false,
       message: 'get data success',
@@ -34,4 +35,25 @@ const getAllDataFromSchema = async (
   }
 }
 
-export { getAllDataFromSchema }
+const createConceptInSchema = async (
+  schema: Model<IConcepts>,
+  data: UIConcept,
+): Promise<IOneConcept> => {
+  try {
+    const concept = new schema(data)
+    await concept.save()
+    LogMongoDB('datos guardados con exito')
+    return {
+      error: false,
+      message: null,
+      data: concept,
+    }
+  } catch (error) {
+    return {
+      error: true,
+      message: error.message,
+    }
+  }
+}
+
+export { getAllDataFromSchema, createConceptInSchema }

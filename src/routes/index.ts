@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/api/v1/', getAllConcepts)
+
 router.post(
   '/api/v1/create-concept',
   conceptValidationRules(),
