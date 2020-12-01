@@ -6,7 +6,6 @@ import {
 } from '../controllers/concepts/concepts.controllers'
 import {
   conceptValidationRules,
-  deleteConceptRules,
   validationMiddleware,
 } from '../middleware/validator'
 
@@ -14,24 +13,19 @@ const router: Router = Router()
 
 router.get('/', (req, res) => {
   res.json({
-    success: 'exito',
+    example: 'Please read the project readme to learn how to use this API',
   })
 })
 
-router.get('/api/v1/', getAllConcepts)
+router.get('/concepts', getAllConcepts)
 
 router.post(
-  '/api/v1/create-concept',
+  '/concept',
   conceptValidationRules(),
   validationMiddleware,
   createConcept,
 )
 
-router.delete(
-  '/api/v1/delete-concept/:name',
-  // deleteConceptRules(),
-  // validationMiddleware,
-  deleteConcept,
-)
+router.delete('/concept/:name', deleteConcept)
 
 export default router

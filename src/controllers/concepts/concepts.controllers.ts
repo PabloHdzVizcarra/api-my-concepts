@@ -9,6 +9,7 @@ import ConceptSchema from '../../models/concepts.schema'
 import { LogRoute } from '../../module/log_debug/debug'
 
 const getAllConcepts = async (req: Request, res: Response): Promise<void> => {
+  LogRoute('get /concepts')
   const { error, message, data }: DataRes = await getAllDataFromSchema(
     ConceptSchema,
   )
@@ -19,7 +20,7 @@ const getAllConcepts = async (req: Request, res: Response): Promise<void> => {
 }
 
 const createConcept = async (req: Request, res: Response): Promise<void> => {
-  LogRoute('route /api/v1/create-article')
+  LogRoute('post /concept')
   const { error, message, data } = await createConceptInSchema(
     ConceptSchema,
     req.body,
@@ -37,7 +38,7 @@ const createConcept = async (req: Request, res: Response): Promise<void> => {
 }
 
 async function deleteConcept(req: Request, res: Response): Promise<void> {
-  LogRoute('/api/v1/delete-concept/:name')
+  LogRoute('delete /concept/:name')
   const { error, message, databaseError } = await deleteDataInSchema(
     req.params.name,
     ConceptSchema,
