@@ -3,6 +3,7 @@ import {
   getAllDataFromSchema,
   createConceptInSchema,
   deleteDataInSchema,
+  updateDocInSchema,
 } from '../../module/mongoose/mongoose.config'
 import { DataRes } from '../../types'
 import ConceptSchema from '../../models/concepts.schema'
@@ -27,7 +28,7 @@ const createConcept = async (req: Request, res: Response): Promise<void> => {
   )
 
   if (error) {
-    res.status(404).send(message)
+    res.status(404).json({ error: message })
     return
   }
 
@@ -60,4 +61,28 @@ async function deleteConcept(req: Request, res: Response): Promise<void> {
   res.status(200).json({ success: message })
 }
 
-export { getAllConcepts, createConcept, deleteConcept }
+async function updateConceptByName(
+  req: Request,
+  res: Response,
+): Promise<Response> {
+  LogRoute('PATCH /concept/:name')
+  console.log(req.params.name)
+  console.log(req.body)
+  const { error, message, errorDB, document } = await updateDocInSchema(
+    req.body,
+    { title: req.params.name },
+    ConceptSchema,
+  )
+
+  if (errorDB) {
+    return res.status(500).json({ error: message })
+  }
+
+  if (error) {
+    return res.status(404).json({ error: message })
+  }
+
+  return res.status(200).json({ message, document })
+}
+
+export { getAllConcepts, createConcept, deleteConcept, updateConceptByName }

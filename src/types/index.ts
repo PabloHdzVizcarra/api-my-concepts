@@ -27,3 +27,9 @@ export interface IDeleteData {
   message: string | null
   databaseError?: boolean
 }
+export interface ResUpdateConcept {
+  error: boolean
+  message: string
+  errorDB?: boolean
+  document?: IConcepts
+}

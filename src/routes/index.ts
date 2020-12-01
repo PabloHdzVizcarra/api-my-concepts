@@ -3,6 +3,7 @@ import {
   createConcept,
   deleteConcept,
   getAllConcepts,
+  updateConceptByName,
 } from '../controllers/concepts/concepts.controllers'
 import {
   conceptValidationRules,
@@ -27,5 +28,6 @@ router.post(
 )
 
 router.delete('/concept/:name', deleteConcept)
+router.patch('/concept/:name', updateConceptByName)
 
 export default router
