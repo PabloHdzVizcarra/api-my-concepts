@@ -13,6 +13,7 @@
     "src/types/*.ts",
     "node_modules",
     ".vscode",
-    "src/**/*.test.ts"
+    "src/**/*.test.ts",
+    "coverage"
   ]
 }

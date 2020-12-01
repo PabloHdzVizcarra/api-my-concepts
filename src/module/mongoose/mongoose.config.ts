@@ -1,6 +1,12 @@
 import config from '../../config'
 import mongoose, { Model } from 'mongoose'
-import { DataRes, IConcepts, IOneConcept, UIConcept } from '../../types'
+import {
+  DataRes,
+  IConcepts,
+  IDeleteData,
+  IOneConcept,
+  UIConcept,
+} from '../../types'
 import { LogInfo, LogMongoDB } from '../log_debug/debug'
 
 const uri: string = config.DB_URL
@@ -57,4 +63,30 @@ const createConceptInSchema = async (
   }
 }
 
-export { getAllDataFromSchema, createConceptInSchema }
+async function deleteDataInSchema(
+  data: string,
+  scheme: Model<IConcepts>,
+): Promise<IDeleteData> {
+  try {
+    const concept = await scheme.findOneAndDelete({ title: data })
+    console.log(concept)
+    if (!concept) {
+      return {
+        error: true,
+        message: 'No se encontraron los datos en la database',
+      }
+    }
+
+    return {
+      error: false,
+      message: 'Se elimino con exito',
+    }
+  } catch (error) {
+    return {
+      error: true,
+      message: error.message,
+      databaseError: true,
+    }
+  }
+}
+export { getAllDataFromSchema, createConceptInSchema, deleteDataInSchema }

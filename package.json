@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest --detectOpenHandles --watch",
+    "test": "NODE_ENV=test jest --detectOpenHandles -o",
     "dev": "tsc --watch",
     "dev:server": "NODE_ENV=development DEBUG=info* nodemon dist/js/index.js",
     "start": "node dist/js/index.js",
