@@ -3,13 +3,13 @@ import app from '../../app'
 import * as mongoose from '../../module/mongoose/mongoose.config'
 import { DataRes, IConcepts } from '../../types'
 
-describe('Text in end-point "/api/v1/"', () => {
+describe('Text in end-point "get /concepts"', () => {
   test('it should return a status code 500 and error message if there is an error with the database', async () => {
     const mock = jest
       .spyOn(mongoose, 'getAllDataFromSchema')
       .mockResolvedValue(<DataRes>{ error: true, message: 'database error' })
 
-    const result = await request(app).get('/api/v1/')
+    const result = await request(app).get('/concepts')
     expect(result.status).toBe(500)
     expect(result.text).toBeTruthy()
 
@@ -29,7 +29,7 @@ describe('Text in end-point "/api/v1/"', () => {
           },
         ],
       })
-    const result = await request(app).get('/api/v1/')
+    const result = await request(app).get('/concepts')
     expect(result.status).toBe(200)
     expect(result.body).toEqual([
       <IConcepts>{

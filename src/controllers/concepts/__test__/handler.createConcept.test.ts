@@ -3,7 +3,7 @@ import app from '../../../app'
 import * as mongoose from '../../../module/mongoose/mongoose.config'
 import { IConcepts } from '../../../types'
 
-describe('Test in createConcept handler for end-point "api/v1/create-concept"', () => {
+describe('Test in createConcept handler for end-point "POST /concept"', () => {
   test('it should return a status code 404, if the data cannot be saved in the database', async () => {
     const mock = jest
       .spyOn(mongoose, 'createConceptInSchema')
@@ -13,7 +13,7 @@ describe('Test in createConcept handler for end-point "api/v1/create-concept"', 
       })
 
     const res = await request(app)
-      .post('/api/v1/create-concept')
+      .post('/concept')
       .set('Content-type', 'application/json')
       .send({
         title: 'Ubuntu',
@@ -37,7 +37,7 @@ describe('Test in createConcept handler for end-point "api/v1/create-concept"', 
       })
 
     const res = await request(app)
-      .post('/api/v1/create-concept')
+      .post('/concept')
       .set('Content-type', 'application/json')
       .send({
         title: 'Ubuntu',
