@@ -5,6 +5,7 @@ import {
   IConcepts,
   IDeleteData,
   IOneConcept,
+  ResUpdateConcept,
   UIConcept,
 } from '../../types'
 import { LogInfo, LogMongoDB } from '../log_debug/debug'
@@ -17,6 +18,7 @@ const options = {
 
 mongoose.connect(uri, options)
 mongoose.set('useCreateIndex', true)
+mongoose.set('useFindAndModify', false)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', (): void => {
@@ -49,6 +51,7 @@ const createConceptInSchema = async (
   try {
     const concept = new schema(data)
     await concept.save()
+    console.log(concept)
     LogMongoDB('datos guardados con exito')
     return {
       error: false,
@@ -56,6 +59,7 @@ const createConceptInSchema = async (
       data: concept,
     }
   } catch (error) {
+    // console.log(error.code)
     return {
       error: true,
       message: error.message,
@@ -88,4 +92,38 @@ async function deleteDataInSchema(
     }
   }
 }
-export { getAllDataFromSchema, createConceptInSchema, deleteDataInSchema }
+
+async function updateDocInSchema(
+  data: { description: string },
+  name: { title: string },
+  Schema: Model<IConcepts>,
+): Promise<ResUpdateConcept> {
+  try {
+    const result = await Schema.findOneAndUpdate(name, data, { new: true })
+    if (!result) {
+      return {
+        error: true,
+        message: `El documento con title: ${name.title} no se encontro en la database`,
+      }
+    }
+    await result.save()
+    return {
+      error: false,
+      message: `Documento ${name.title} actualizado con exito`,
+      document: result,
+    }
+  } catch (error) {
+    return {
+      error: true,
+      message: error.message,
+      errorDB: true,
+    }
+  }
+}
+
+export {
+  getAllDataFromSchema,
+  createConceptInSchema,
+  deleteDataInSchema,
+  updateDocInSchema,
+}
