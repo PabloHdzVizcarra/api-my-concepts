@@ -69,7 +69,6 @@ async function deleteDataInSchema(
 ): Promise<IDeleteData> {
   try {
     const concept = await scheme.findOneAndDelete({ title: data })
-    console.log(concept)
     if (!concept) {
       return {
         error: true,
