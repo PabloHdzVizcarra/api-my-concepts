@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import {
   getAllDataFromSchema,
   createConceptInSchema,
+  deleteDataInSchema,
 } from '../../module/mongoose/mongoose.config'
 import { DataRes } from '../../types'
 import ConceptSchema from '../../models/concepts.schema'
@@ -35,4 +36,24 @@ const createConcept = async (req: Request, res: Response): Promise<void> => {
   })
 }
 
-export { getAllConcepts, createConcept }
+async function deleteConcept(req: Request, res: Response): Promise<void> {
+  LogRoute('/api/v1/delete-concept/:name')
+  const { error, message, databaseError } = await deleteDataInSchema(
+    req.params.name,
+    ConceptSchema,
+  )
+
+  if (databaseError) {
+    res.status(500).json({ error })
+    return
+  }
+
+  if (error) {
+    res.status(404).json({ error })
+    return
+  }
+
+  res.status(200).json({ success: message })
+}
+
+export { getAllConcepts, createConcept, deleteConcept }

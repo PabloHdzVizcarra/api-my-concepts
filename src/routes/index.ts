@@ -6,6 +6,7 @@ import {
 } from '../controllers/concepts/concepts.controllers'
 import {
   conceptValidationRules,
+  deleteConceptRules,
   validationMiddleware,
 } from '../middleware/validator'
 
@@ -26,6 +27,11 @@ router.post(
   createConcept,
 )
 
-router.delete('/api/v1/delete-concept/:name', deleteConcept)
+router.delete(
+  '/api/v1/delete-concept/:name',
+  // deleteConceptRules(),
+  // validationMiddleware,
+  deleteConcept,
+)
 
 export default router

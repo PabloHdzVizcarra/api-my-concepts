@@ -17,7 +17,13 @@ export interface UIConcept {
 }
 
 export interface IOneConcept {
-  error: boolean | false
+  error: true | false
   message: string | null
   data?: IConcepts
+}
+
+export interface IDeleteData {
+  error: boolean
+  message: string | null
+  databaseError?: boolean
 }

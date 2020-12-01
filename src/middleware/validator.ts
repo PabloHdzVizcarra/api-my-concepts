@@ -1,4 +1,9 @@
-import { body, ValidationChain, validationResult } from 'express-validator'
+import {
+  body,
+  param,
+  ValidationChain,
+  validationResult,
+} from 'express-validator'
 import { NextFunction, Request, Response } from 'express'
 import { LogSendData } from '../module/log_debug/debug'
 
@@ -12,6 +17,10 @@ const conceptValidationRules = (): ValidationChain[] => [
     .not()
     .isEmpty(),
 ]
+
+function deleteConceptRules(): ValidationChain[] {
+  return [param('name', 'debes proporcionar un nombre para eliminar').exists()]
+}
 
 const validationMiddleware = (
   req: Request,
@@ -33,4 +42,4 @@ const validationMiddleware = (
   })
 }
 
-export { conceptValidationRules, validationMiddleware }
+export { conceptValidationRules, validationMiddleware, deleteConceptRules }
