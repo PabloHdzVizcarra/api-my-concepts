@@ -6,6 +6,7 @@ import {
   updateConceptByName,
 } from '../controllers/concepts/concepts.controllers'
 import {
+  conceptUpdateRules,
   conceptValidationRules,
   validationMiddleware,
 } from '../middleware/validator'
@@ -28,6 +29,11 @@ router.post(
 )
 
 router.delete('/concept/:name', deleteConcept)
-router.patch('/concept/:name', updateConceptByName)
+router.patch(
+  '/concept/:name',
+  conceptUpdateRules(),
+  validationMiddleware,
+  updateConceptByName,
+)
 
 export default router

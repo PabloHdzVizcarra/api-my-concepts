@@ -66,8 +66,6 @@ async function updateConceptByName(
   res: Response,
 ): Promise<Response> {
   LogRoute('PATCH /concept/:name')
-  console.log(req.params.name)
-  console.log(req.body)
   const { error, message, errorDB, document } = await updateDocInSchema(
     req.body,
     { title: req.params.name },

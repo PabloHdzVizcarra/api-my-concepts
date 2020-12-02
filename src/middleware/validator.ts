@@ -1,9 +1,4 @@
-import {
-  body,
-  param,
-  ValidationChain,
-  validationResult,
-} from 'express-validator'
+import { body, ValidationChain, validationResult } from 'express-validator'
 import { NextFunction, Request, Response } from 'express'
 import { LogSendData } from '../module/log_debug/debug'
 
@@ -18,8 +13,15 @@ const conceptValidationRules = (): ValidationChain[] => [
     .isEmpty(),
 ]
 
-function deleteConceptRules(): ValidationChain[] {
-  return [param('name', 'debes proporcionar un nombre para eliminar').exists()]
+function conceptUpdateRules(): ValidationChain[] {
+  return [
+    body(
+      'description',
+      'debes proporcionar una descripcion para poder actualizar',
+    )
+      .exists()
+      .isLength({ min: 10 }),
+  ]
 }
 
 const validationMiddleware = (
@@ -42,4 +44,4 @@ const validationMiddleware = (
   })
 }
 
-export { conceptValidationRules, validationMiddleware, deleteConceptRules }
+export { conceptValidationRules, validationMiddleware, conceptUpdateRules }

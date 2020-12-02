@@ -51,15 +51,13 @@ const createConceptInSchema = async (
   try {
     const concept = new schema(data)
     await concept.save()
-    console.log(concept)
     LogMongoDB('datos guardados con exito')
     return {
       error: false,
-      message: null,
+      message: 'Se guardaron con exito los datos en la database',
       data: concept,
     }
   } catch (error) {
-    // console.log(error.code)
     return {
       error: true,
       message: error.message,
@@ -107,6 +105,7 @@ async function updateDocInSchema(
       }
     }
     await result.save()
+    LogMongoDB('update data')
     return {
       error: false,
       message: `Documento ${name.title} actualizado con exito`,
