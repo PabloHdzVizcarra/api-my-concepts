@@ -3,7 +3,9 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",  // agrega las reglas de prettier a eslint
-    "plugin:prettier/recommended" // agregar el plugin que integra eslint con prettier
+    "plugin:prettier/recommended", // agregar el plugin que integra eslint con prettier
+    "plugin:jest/recommended",
+    "plugin:jest/style"
   ],
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -13,6 +15,9 @@
     "es6": true,
     "node": true
   },
+  "plugins": [
+    "jest"
+  ],
   "rules": {
   }
 }

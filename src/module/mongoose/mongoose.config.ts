@@ -29,8 +29,8 @@ const getAllDataFromSchema = async (
   schema: Model<IConcepts>,
 ): Promise<DataRes> => {
   try {
-    const concepts: IConcepts[] = await schema.find()
-    LogMongoDB('datos obtenidos de mongodb')
+    const concepts: IConcepts[] = await schema.find({})
+    LogMongoDB('data obtained from mongodb')
     return {
       error: false,
       message: 'get data success',
@@ -51,10 +51,10 @@ const createConceptInSchema = async (
   try {
     const concept = new schema(data)
     await concept.save()
-    LogMongoDB('datos guardados con exito')
+    LogMongoDB('data saved successfully')
     return {
       error: false,
-      message: 'Se guardaron con exito los datos en la database',
+      message: `the ${data.title} document was successfully saved in the database`,
       data: concept,
     }
   } catch (error) {
@@ -74,13 +74,13 @@ async function deleteDataInSchema(
     if (!concept) {
       return {
         error: true,
-        message: 'No se encontraron los datos en la database',
+        message: `not found ${data} document in the database`,
       }
     }
 
     return {
       error: false,
-      message: 'Se elimino con exito',
+      message: 'was successfully removed from the database',
     }
   } catch (error) {
     return {
@@ -101,14 +101,14 @@ async function updateDocInSchema(
     if (!result) {
       return {
         error: true,
-        message: `El documento con title: ${name.title} no se encontro en la database`,
+        message: `the document with the title: ${name.title} was not found in the database`,
       }
     }
     await result.save()
     LogMongoDB('update data')
     return {
       error: false,
-      message: `Documento ${name.title} actualizado con exito`,
+      message: `${name.title} document updated successfully`,
       document: result,
     }
   } catch (error) {

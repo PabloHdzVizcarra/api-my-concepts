@@ -46,7 +46,7 @@ async function deleteConcept(req: Request, res: Response): Promise<void> {
   )
 
   if (databaseError) {
-    LogMongoDB('ocurrio un error en la concexion a la database')
+    LogMongoDB('An error cocurred with the connection to the database')
     res.status(500).json({ error: message })
     return
   }

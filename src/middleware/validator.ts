@@ -3,11 +3,11 @@ import { NextFunction, Request, Response } from 'express'
 import { LogSendData } from '../module/log_debug/debug'
 
 const conceptValidationRules = (): ValidationChain[] => [
-  body('title', 'Debes agregar un titulo al concepto')
+  body('title', 'You must add a title to the concept')
     .isString()
     .not()
     .isEmpty(),
-  body('description', 'Debe contener una description el concepto')
+  body('description', 'Must contain a valida description')
     .isString()
     .not()
     .isEmpty(),
@@ -17,7 +17,7 @@ function conceptUpdateRules(): ValidationChain[] {
   return [
     body(
       'description',
-      'debes proporcionar una descripcion para poder actualizar',
+      'You must provide a valid description in order to update it',
     )
       .exists()
       .isLength({ min: 10 }),
@@ -38,7 +38,7 @@ const validationMiddleware = (
   const extractedErrors: string[] = []
   errors.array().map(err => extractedErrors.push(err.msg))
 
-  LogSendData('enviaste datos incorrectos')
+  LogSendData('You sent wrong data')
   res.status(422).json({
     errors: extractedErrors,
   })
