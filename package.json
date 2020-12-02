@@ -8,7 +8,10 @@
     "dev": "tsc --watch",
     "dev:server": "NODE_ENV=development DEBUG=info* nodemon dist/js/index.js",
     "start": "node dist/js/index.js",
-    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --quiet --fix"
+    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --quiet --fix",
+    "build": "tsc --build",
+    "check": "prettier --check src/**/*.ts",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",

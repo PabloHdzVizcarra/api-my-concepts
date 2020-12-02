@@ -2,7 +2,7 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",  // agrega las reglas de prettier a eslint
+    "prettier/@typescript-eslint", // agrega las reglas de prettier a eslint
     "plugin:prettier/recommended", // agregar el plugin que integra eslint con prettier
     "plugin:jest/recommended",
     "plugin:jest/style"
@@ -15,9 +15,6 @@
     "es6": true,
     "node": true
   },
-  "plugins": [
-    "jest"
-  ],
-  "rules": {
-  }
+  "plugins": ["jest"],
+  "rules": {}
 }
