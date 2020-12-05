@@ -1,5 +1,8 @@
-*.env
 node_modules
 npm-debug.log
 Dockerfile
-.dockerignore
+src
+coverage
+.git
+.gitignore
+README.dm
