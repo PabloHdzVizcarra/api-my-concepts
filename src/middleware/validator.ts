@@ -7,10 +7,15 @@ const conceptValidationRules = (): ValidationChain[] => [
     .isString()
     .not()
     .isEmpty(),
-  body('description', 'Must contain a valida description')
+  body('description', 'Must contain a valid description')
     .isString()
     .not()
     .isEmpty(),
+  body('subtitle', 'You must add a subtitle to the concept')
+    .isString()
+    .not()
+    .isEmpty()
+    .isLength({ min: 10 }),
 ]
 
 function conceptUpdateRules(): ValidationChain[] {

@@ -14,6 +14,10 @@ const conceptsSchema: Schema = new Schema(
       type: String,
       required: true,
     },
+    subtitle: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true },
 )

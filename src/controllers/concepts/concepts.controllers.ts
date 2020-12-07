@@ -21,7 +21,7 @@ const getAllConcepts = async (req: Request, res: Response): Promise<void> => {
 }
 
 const createConcept = async (req: Request, res: Response): Promise<void> => {
-  LogRoute('post /concept')
+  LogRoute('post /api/concept')
   const { error, message, data } = await createConceptInSchema(
     ConceptSchema,
     req.body,
