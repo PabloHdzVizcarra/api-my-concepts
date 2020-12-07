@@ -1,10 +1,10 @@
 import app from './app'
-import config from './config'
+import env from './config'
 
-const PORT: string | number = process.env.PORT || 4000
+const PORT: string | number = env.PORT || 300
 
 app.listen(PORT, () => {
-  console.log(`App listen in http://${config.HOST}:${config.PORT}`)
+  console.log(`App listen in http://${'localhost'}:${env.PORT}`)
 })
 
 export default 'Success'

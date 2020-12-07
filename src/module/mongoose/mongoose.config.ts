@@ -1,4 +1,3 @@
-import config from '../../config'
 import mongoose, { Model } from 'mongoose'
 import {
   DataRes,
@@ -9,8 +8,11 @@ import {
   UIConcept,
 } from '../../types'
 import { LogInfo, LogMongoDB } from '../log_debug/debug'
+import env from '../../config'
 
-const uri: string = config.DB_URL
+const { MONGO_DB, MONGO_HOST, MONGO_PASSWORD, MONGO_PORT, MONGO_USERNAME } = env
+
+const uri = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,

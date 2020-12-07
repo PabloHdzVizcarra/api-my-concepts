@@ -1,22 +1,23 @@
 import dotenv from 'dotenv'
-import path from 'path'
 
-interface ConfigFile {
-  NODE_ENV: string | undefined
-  HOST: string | number
+dotenv.config()
+
+interface envFile {
   PORT: number | string
-  DB_URL: string
+  MONGO_USERNAME: number | string
+  MONGO_PASSWORD: number | string
+  MONGO_PORT: number | string
+  MONGO_HOST: number | string
+  MONGO_DB: number | string
 }
 
-dotenv.config({
-  path: path.resolve(process.cwd(), process.env.NODE_ENV + '.env'),
-})
-
-const objectConfig: ConfigFile = {
-  NODE_ENV: process.env.NODE_ENV,
-  HOST: process.env.HOST || 'localhost',
+const env: envFile = {
   PORT: process.env.PORT || 3000,
-  DB_URL: process.env.DB_URL || 'mongodb://0.0.0.0:27017/default',
+  MONGO_PASSWORD: process.env.MONGO_PASSWORD || '123456',
+  MONGO_DB: process.env.MONGO_DB || 'any',
+  MONGO_HOST: process.env.MONGO_HOST || 'localhost',
+  MONGO_USERNAME: process.env.MONGO_USERNAME || 'example',
+  MONGO_PORT: process.env.MONGO_PORT || 27017,
 }
 
-export default objectConfig
+export default env

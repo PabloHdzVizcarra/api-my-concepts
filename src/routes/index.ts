@@ -19,18 +19,18 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/concepts', getAllConcepts)
+router.get('/api/concepts', getAllConcepts)
 
 router.post(
-  '/concept',
+  '/api/concept',
   conceptValidationRules(),
   validationMiddleware,
   createConcept,
 )
 
-router.delete('/concept/:name', deleteConcept)
+router.delete('/api/concept/:name', deleteConcept)
 router.patch(
-  '/concept/:name',
+  '/api/concept/:name',
   conceptUpdateRules(),
   validationMiddleware,
   updateConceptByName,
